@@ -66,17 +66,11 @@ public class music_source_behavior : MonoBehaviour {
 		//Calculate number of beats in song
 		int num_beats = (int) ((music_source.clip.length / 60f) * bpm);
 
-		//Play audio clip -- make sure that clip isn't already playing
-		music_source.Play ();
-
-		//Get initial play time
-		float intial_play_time = Time.time;
-
 		//Generate list of buttons to press 
 		for(int i = 0; i < num_beats; i++)
 		{
 			//Get Timestamp, window and key for each beat
-			float timestamp = intial_play_time + (i * (60/bpm));
+			float timestamp = (i * (60/bpm));
 			float win = timestamp + (25f/bpm);
 			KeyCode[] keys = generateKey();
 			button_to_press b = new button_to_press(timestamp,win,keys);
