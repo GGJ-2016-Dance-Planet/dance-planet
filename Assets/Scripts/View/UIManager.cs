@@ -5,39 +5,43 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager> {
 
     public Text playerText;
+    public Animator playerAnim;
     public Text opponentText;
-    public Animator textAnimator;
-    private bool isDisplaying = false;
+    public Animator opponentAnim;
+    public Text centerText;
+    public Animator centerAnim;
+
+    void Start() {
+        MusicChunkAdapter.Instance.OnChunk += (float offset, button_to_press btp) => {
+            DisplayCenterText(btp.buttons[0].ToString(), btp.window, true);
+        };
+        InputManager.Instance.OnRating += (Ratings rating) => {
+            DisplayPlayerText(rating.ToString().ToLower(), 0.2f);
+        };
+    }
 
     public void DisplayPlayerText(string text, float interval) {
-        DisplayText (playerText, text, interval);
+        DisplayText (playerText, playerAnim, text, interval, false);
     }
 
     public void DisplayOpponentText(string text, float interval) {
-        DisplayText (opponentText, text, interval);
+        DisplayText (opponentText, opponentAnim, text, interval, false);
     }
 
-    private void DisplayText(Text text, string textString, float interval) {
-        
-            // StartCoroutine(DoDisplay(text, textString, interval));
-            
-            text.text = textString;
-            isDisplaying = true;
-            textAnimator.speed = interval;
-            textAnimator.SetTrigger("FadeIn");
-            
+    public void DisplayCenterText(string text, float interval, bool flash) {
+        DisplayText (centerText, centerAnim, text, interval, flash);
     }
 
-        private IEnumerator DoDisplay(Text text, string textString, float interval) {
-        isDisplaying = true;
+    private void DisplayText(Text text, Animator textAnimator, string textString, float interval, bool flash) {   
         text.text = textString;
-        var startColor = new Color (text.color.r, text.color.g, text.color.b, 0f);
-        var endColor = new Color (text.color.r, text.color.g, text.color.b, 1f);
-        text.color = startColor;
-        yield return StartCoroutine (CoUtils.Interpolate (interval, (t) => {
-            var normT = Mathf.PingPong (t * 2f, 1f);
-            text.color = Color.Lerp (startColor, endColor, normT);
-        }));
-        isDisplaying = false;
+        textAnimator.speed = 1f / interval;
+        if (flash) {
+            Debug.Log ("Display Called");
+
+            textAnimator.SetTrigger ("FadeInAndFlash");
+        } else {
+            textAnimator.SetTrigger ("FadeIn");
+        }
+        textAnimator.speed = 1f / interval;
     }
 }

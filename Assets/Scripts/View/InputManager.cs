@@ -15,6 +15,8 @@ public class InputManager : Singleton<InputManager> {
     private bool chunkValid = false;
     private float timeOffset;
 
+    public Animator currentPlayerAnimator;
+
     private HashSet<KeyCode> validInputs = new HashSet<KeyCode> (new KeyCode[] {
         KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D,
         KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow
@@ -31,7 +33,6 @@ public class InputManager : Singleton<InputManager> {
     }
 
     void cacheChunk(float timeOffset, button_to_press chunk) {
-        UIManager.Instance.DisplayPlayerText (chunk.buttons[0].ToString(), chunk.window*2f);
         currentChunk = chunk;
         chunkValid = true;
         this.timeOffset = timeOffset;
@@ -63,6 +64,9 @@ public class InputManager : Singleton<InputManager> {
     }
 
     void respondToInput(KeyCode keyPressed, button_to_press chunk) {
+
+        currentPlayerAnimator.SetTrigger (keyPressed.ToString ().ToLower() + "_trigger");
+
         var keyExpected = chunk.buttons [0];
         if (keyPressed == keyExpected) {
             var rating = getRatingForInput (chunk.timestamp, chunk.window);

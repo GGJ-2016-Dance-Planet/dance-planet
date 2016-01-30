@@ -5,7 +5,7 @@ using System;
 
 public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
 
-    private static float chunkDelay = 2f;
+    private static float chunkDelay = 1f;
 
     public music_source_behavior music;
     public event Action<float, button_to_press> OnChunk;
@@ -23,7 +23,6 @@ public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
 
     KeyCode getRandomKey() {
         var randfloat = UnityEngine.Random.value;
-        //KeyCode key = null;
         if (randfloat < 0.25f) {
             return KeyCode.W;
         } else if (randfloat < 0.5f) {
@@ -38,7 +37,7 @@ public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
     IEnumerator ChunkDaemon(Queue<button_to_press> sequence) {
         for (int i = 3; i > 0; i--) {
             yield return new WaitForSeconds (chunkDelay);
-            Debug.Log (i);
+            UIManager.Instance.DisplayCenterText (i.ToString (), chunkDelay / 2f, false);
         }
         yield return new WaitForSeconds (chunkDelay);
         float timeOffset = Time.time;

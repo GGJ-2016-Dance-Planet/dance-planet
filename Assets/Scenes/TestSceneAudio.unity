@@ -249,6 +249,7 @@ MonoBehaviour:
   perfect: 0.25
   good: 0.5
   okay: 1
+  currentPlayerAnimator: {fileID: 1701523813}
 --- !u!4 &610478260
 Transform:
   m_ObjectHideFlags: 0
@@ -279,7 +280,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: {fileID: 0}
-  sause: {fileID: 0}
 --- !u!4 &666722936 stripped
 Transform:
   m_PrefabParentObject: {fileID: 498850, guid: 5e763756679ae46b2846c333abfa1519, type: 2}
@@ -355,6 +355,7 @@ GameObject:
   - 224: {fileID: 965530184}
   - 222: {fileID: 965530186}
   - 114: {fileID: 965530185}
+  - 95: {fileID: 965530187}
   m_Layer: 5
   m_Name: CenterText
   m_TagString: Untagged
@@ -411,13 +412,30 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: W
+  m_Text: 
 --- !u!222 &965530186
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 965530183}
+--- !u!95 &965530187
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 965530183}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 632f687d94fb04d5b821c5840cc697b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1065558750
 Prefab:
   m_ObjectHideFlags: 0
@@ -536,6 +554,7 @@ GameObject:
   - 224: {fileID: 1396119898}
   - 222: {fileID: 1396119900}
   - 114: {fileID: 1396119899}
+  - 95: {fileID: 1396119901}
   m_Layer: 5
   m_Name: LeftText
   m_TagString: Untagged
@@ -599,6 +618,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1396119897}
+--- !u!95 &1396119901
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396119897}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 632f687d94fb04d5b821c5840cc697b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1412598129
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,8 +741,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerText: {fileID: 1396119899}
+  playerAnim: {fileID: 1396119901}
   opponentText: {fileID: 1629254693}
+  opponentAnim: {fileID: 1629254695}
   centerText: {fileID: 965530185}
+  centerAnim: {fileID: 965530187}
 --- !u!1001 &1449697595
 Prefab:
   m_ObjectHideFlags: 0
@@ -832,7 +871,7 @@ Animator:
   m_GameObject: {fileID: 1629254691}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dfd02681f99fa45d6bad1e53311fb83a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 632f687d94fb04d5b821c5840cc697b4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -843,6 +882,11 @@ Animator:
 --- !u!4 &1659339636 stripped
 Transform:
   m_PrefabParentObject: {fileID: 484668, guid: 693c07a701d5344bda96ace9729ab147, type: 2}
+  m_PrefabInternal: {fileID: 2118666337}
+--- !u!95 &1701523813 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9541496, guid: 693c07a701d5344bda96ace9729ab147,
+    type: 2}
   m_PrefabInternal: {fileID: 2118666337}
 --- !u!4 &1983381344 stripped
 Transform:

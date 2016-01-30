@@ -14,6 +14,10 @@ public class Health : MonoBehaviour {
     }
     public float maxHealth;
 
+    void Start() {
+        InputManager.Instance.OnRating += resultHappened;
+    }
+
     public void resultHappened(Ratings rating) {
         if (rating == Ratings.BAD) {
             HealthStatus -= 0.1f;
