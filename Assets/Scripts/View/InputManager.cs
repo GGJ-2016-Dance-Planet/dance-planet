@@ -16,6 +16,7 @@ public class InputManager : Singleton<InputManager> {
     private float timeOffset;
 
     public Animator currentPlayerAnimator;
+    public AudioSource sauce;
 
     private HashSet<KeyCode> validInputs = new HashSet<KeyCode> (new KeyCode[] {
         KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D,
@@ -40,7 +41,7 @@ public class InputManager : Singleton<InputManager> {
 
     void Update() {
         if (chunkValid) {
-            var now = Time.time - timeOffset;
+            var now = sauce.time - timeOffset;
             if (now > currentChunk.timestamp + currentChunk.window) {
                 OnRating (Ratings.BAD);
                 chunkValid = false;

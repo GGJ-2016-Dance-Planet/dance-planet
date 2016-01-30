@@ -28,13 +28,13 @@ public class music_source_behavior : MonoBehaviour {
 	public float sample_rate;
 
 	//The variables associated with level 1 track
-	float level_1_bpm = 99f;
+	float level_1_bpm = 60f;
 	float level_1_beats_per_chunk = 4f;
 
 
 	//The delegate to alert subscribers of which user/computer button to press and when
-	public delegate void user_press_button(List<button_to_press> user_input);
-	public delegate void computer_press_button(List<button_to_press> computer_input);
+    public delegate void user_press_button(List<button_to_press> user_input, float chunkDelay);
+    public delegate void computer_press_button(List<button_to_press> computer_input, float chunkDelay);
 
 	//The user/computer button press event to broadcast
 	public event user_press_button userPressButton;
@@ -83,7 +83,7 @@ public class music_source_behavior : MonoBehaviour {
 
 			//Get Timestamp, window and key for each beat
 			float timestamp = (i * (60/bpm));
-			float win = timestamp + (25f/bpm);
+			float win = (30/bpm);
 			KeyCode[] keys = generateKey();
 			button_to_press b = new button_to_press(timestamp,win,keys);
 
@@ -95,14 +95,18 @@ public class music_source_behavior : MonoBehaviour {
 
 		}
 
+        var chunkDelay = beats_per_chunk * (60 / bpm);
+
 		//Send off list of computer beats
-		if(computerPressButton != null)
-				computerPressButton(computer_beats);
+        if (computerPressButton != null) {
+            computerPressButton (computer_beats, chunkDelay);
+        }
 		
 
 		//Send off list of user beats
-		if (userPressButton != null)
-			userPressButton (required_user_input);
+        if (userPressButton != null) {
+            userPressButton (required_user_input, chunkDelay);
+        }
 
 		//Output our user timestamps
 		outputBeatTimes (required_user_input, "User");
