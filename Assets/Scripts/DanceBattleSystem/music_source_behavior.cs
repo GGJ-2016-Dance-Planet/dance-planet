@@ -33,11 +33,13 @@ public class music_source_behavior : MonoBehaviour {
 	float level_1_beats_per_chunk;
 
 
-	//The delegate to alert subscribers of which button to press and when
-	public delegate void press_button(List<button_to_press> chunk);
+	//The delegate to alert subscribers of which user/computer button to press and when
+	public delegate void user_press_button(List<button_to_press> user_input);
+	public delegate void computer_press_button(List<button_to_press> computer_input);
 
-	//The button press event to broadcast
-	public event press_button pressButton;
+	//The user/computer button press event to broadcast
+	public event user_press_button userPressButton;
+	public event computer_press_button computerPressButton;
 
 	//The list of buttons_to_pres
 	public List<button_to_press> required_user_input;
@@ -91,7 +93,7 @@ public class music_source_behavior : MonoBehaviour {
 		{
 			if(j%2 == 0)
 			{
-                int start_index = (int)(beats_per_chunk*j);
+                int start_index = (int)(beats_per_chunk * j);
 				for(int k = 0; k < beats_per_chunk; k++)
 				{
 					//Add computer beats to relevant list
@@ -102,6 +104,10 @@ public class music_source_behavior : MonoBehaviour {
 
 				}
 			}
+
+			//Send off computer's beats
+			if(computerPressButton != null)
+				computerPressButton(computer_beats);
 		}
 
 		//Sync user keys to computer keys 
@@ -113,8 +119,8 @@ public class music_source_behavior : MonoBehaviour {
             required_user_input[l] = newButton;
 		}
 
-		if (pressButton != null)
-			pressButton (required_user_input);
+		if (userPressButton != null)
+			userPressButton (required_user_input);
 
 	}
 
@@ -139,12 +145,6 @@ public class music_source_behavior : MonoBehaviour {
 			}
 
 			return return_array;
-	}
-	
-	void Update () 
-	{
-		//Send off 
-
 	}
 
 
