@@ -1,29 +1,29 @@
 fileFormatVersion: 2
-guid: ed0f9fb7ea4e14ec59a0ddcf9cab7ebb
-timeCreated: 1454188702
+guid: 904f56f6389a3404a8689f93bfcbccdf
+timeCreated: 1454189325
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: firstAlienSpriteSheet_0
-    21300002: firstAlienSpriteSheet_1
-    21300004: firstAlienSpriteSheet_2
-    21300006: firstAlienSpriteSheet_3
-    21300008: firstAlienSpriteSheet_4
-    21300010: firstAlienSpriteSheet_5
-    21300012: firstAlienSpriteSheet_6
-    21300014: firstAlienSpriteSheet_7
-    21300016: firstAlienSpriteSheet_8
-    21300018: firstAlienSpriteSheet_9
-    21300020: firstAlienSpriteSheet_10
-    21300022: firstAlienSpriteSheet_11
-    21300024: firstAlienSpriteSheet_12
-    21300026: firstAlienSpriteSheet_13
-    21300028: firstAlienSpriteSheet_14
-    21300030: firstAlienSpriteSheet_15
-    21300032: firstAlienSpriteSheet_16
-    21300034: firstAlienSpriteSheet_17
-    21300036: firstAlienSpriteSheet_18
-    21300038: firstAlienSpriteSheet_19
+    21300000: firstAlienSpriteSheet 1_0
+    21300002: firstAlienSpriteSheet 1_1
+    21300004: firstAlienSpriteSheet 1_2
+    21300006: firstAlienSpriteSheet 1_3
+    21300008: firstAlienSpriteSheet 1_4
+    21300010: firstAlienSpriteSheet 1_5
+    21300012: firstAlienSpriteSheet 1_6
+    21300014: firstAlienSpriteSheet 1_7
+    21300016: firstAlienSpriteSheet 1_8
+    21300018: firstAlienSpriteSheet 1_9
+    21300020: firstAlienSpriteSheet 1_10
+    21300022: firstAlienSpriteSheet 1_11
+    21300024: firstAlienSpriteSheet 1_12
+    21300026: firstAlienSpriteSheet 1_13
+    21300028: firstAlienSpriteSheet 1_14
+    21300030: firstAlienSpriteSheet 1_15
+    21300032: firstAlienSpriteSheet 1_16
+    21300034: firstAlienSpriteSheet 1_17
+    21300036: firstAlienSpriteSheet 1_18
+    21300038: firstAlienSpriteSheet 1_19
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -70,7 +70,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: firstAlienSpriteSheet_0
+    - name: firstAlienSpriteSheet 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -100,7 +100,7 @@ TextureImporter:
         - {x: -69.5, y: 1.0566406}
         - {x: -68.5, y: 0.056640625}
         - {x: 67.5, y: 0.056640625}
-    - name: firstAlienSpriteSheet_1
+    - name: firstAlienSpriteSheet 1_1
       rect:
         serializedVersion: 2
         x: 474
@@ -134,7 +134,7 @@ TextureImporter:
         - {x: -30.612381, y: 1.0566406}
         - {x: -22.612381, y: 0.056640625}
         - {x: 67.38762, y: 0.056640625}
-    - name: firstAlienSpriteSheet_2
+    - name: firstAlienSpriteSheet 1_2
       rect:
         serializedVersion: 2
         x: 950
@@ -168,7 +168,7 @@ TextureImporter:
         - {x: -7.8159485, y: 53.793945}
         - {x: 11.1840515, y: 89.793945}
         - {x: 1.1840515, y: -0.20605469}
-    - name: firstAlienSpriteSheet_3
+    - name: firstAlienSpriteSheet 1_3
       rect:
         serializedVersion: 2
         x: 1700
@@ -200,7 +200,7 @@ TextureImporter:
         - {x: 21.487244, y: 154.05664}
         - {x: 31.487244, y: 0.056640625}
         - {x: 68.48724, y: 0.056640625}
-    - name: firstAlienSpriteSheet_4
+    - name: firstAlienSpriteSheet 1_4
       rect:
         serializedVersion: 2
         x: 3
@@ -233,7 +233,7 @@ TextureImporter:
         - {x: -21.636787, y: 156.87122}
         - {x: 30.363213, y: 0.8712158}
         - {x: 31.363213, y: -0.12878418}
-    - name: firstAlienSpriteSheet_5
+    - name: firstAlienSpriteSheet 1_5
       rect:
         serializedVersion: 2
         x: 509
@@ -266,7 +266,7 @@ TextureImporter:
         - {x: 68.79176, y: -0.12878418}
         - {x: 69.79176, y: 0.8712158}
         - {x: 69.79176, y: 17.871216}
-    - name: firstAlienSpriteSheet_6
+    - name: firstAlienSpriteSheet 1_6
       rect:
         serializedVersion: 2
         x: 1029
@@ -298,7 +298,7 @@ TextureImporter:
         - {x: -55.418, y: 0.8712158}
         - {x: -47.418, y: 155.87122}
         - {x: -1.4179993, y: 155.87122}
-    - name: firstAlienSpriteSheet_7
+    - name: firstAlienSpriteSheet 1_7
       rect:
         serializedVersion: 2
         x: 1550
@@ -332,7 +332,7 @@ TextureImporter:
         - {x: -37.1734, y: 0.8712158}
         - {x: -29.1734, y: 155.87122}
         - {x: 13.826599, y: 153.87122}
-    - name: firstAlienSpriteSheet_8
+    - name: firstAlienSpriteSheet 1_8
       rect:
         serializedVersion: 2
         x: 2151
@@ -367,7 +367,7 @@ TextureImporter:
         - {x: 4.423584, y: 162.87122}
         - {x: 62.423584, y: 163.87122}
         - {x: 63.423584, y: 0.8712158}
-    - name: firstAlienSpriteSheet_9
+    - name: firstAlienSpriteSheet 1_9
       rect:
         serializedVersion: 2
         x: 2928
@@ -401,7 +401,7 @@ TextureImporter:
         - {x: -28.504272, y: 154.87122}
         - {x: 24.495728, y: 0.8712158}
         - {x: 25.495728, y: -0.12878418}
-    - name: firstAlienSpriteSheet_10
+    - name: firstAlienSpriteSheet 1_10
       rect:
         serializedVersion: 2
         x: 3535
@@ -433,7 +433,7 @@ TextureImporter:
         - {x: -55.18091, y: 0.8712158}
         - {x: -47.18091, y: 155.87122}
         - {x: -1.1809082, y: 155.87122}
-    - name: firstAlienSpriteSheet_11
+    - name: firstAlienSpriteSheet 1_11
       rect:
         serializedVersion: 2
         x: 4037
@@ -467,7 +467,7 @@ TextureImporter:
         - {x: -30.069946, y: 0.8712158}
         - {x: 20.930054, y: 153.87122}
         - {x: 30.930054, y: -0.12878418}
-    - name: firstAlienSpriteSheet_12
+    - name: firstAlienSpriteSheet 1_12
       rect:
         serializedVersion: 2
         x: 3
@@ -500,7 +500,7 @@ TextureImporter:
         - {x: -67.63679, y: 31.687378}
         - {x: -75.63679, y: -0.31262207}
         - {x: 68.36321, y: -0.31262207}
-    - name: firstAlienSpriteSheet_13
+    - name: firstAlienSpriteSheet 1_13
       rect:
         serializedVersion: 2
         x: 538
@@ -531,7 +531,7 @@ TextureImporter:
         - {x: -52.030502, y: 343.68738}
         - {x: -79.0305, y: -0.31262207}
         - {x: 68.9695, y: -0.31262207}
-    - name: firstAlienSpriteSheet_14
+    - name: firstAlienSpriteSheet 1_14
       rect:
         serializedVersion: 2
         x: 1071
@@ -562,7 +562,7 @@ TextureImporter:
         - {x: 2.6669617, y: 154.68738}
         - {x: 48.66696, y: 154.68738}
         - {x: 56.66696, y: -0.31262207}
-    - name: firstAlienSpriteSheet_15
+    - name: firstAlienSpriteSheet 1_15
       rect:
         serializedVersion: 2
         x: 1612
@@ -596,7 +596,7 @@ TextureImporter:
         - {x: 30.999695, y: 154.68738}
         - {x: 38.999695, y: -0.31262207}
         - {x: 76.999695, y: -0.31262207}
-    - name: firstAlienSpriteSheet_16
+    - name: firstAlienSpriteSheet 1_16
       rect:
         serializedVersion: 2
         x: 2237
@@ -631,7 +631,7 @@ TextureImporter:
         - {x: -55.99768, y: 154.68738}
         - {x: -9.997681, y: 154.68738}
         - {x: -1.9976807, y: -0.31262207}
-    - name: firstAlienSpriteSheet_17
+    - name: firstAlienSpriteSheet 1_17
       rect:
         serializedVersion: 2
         x: 2990
@@ -665,7 +665,7 @@ TextureImporter:
         - {x: -15.331299, y: 154.68738}
         - {x: 30.668701, y: 155.68738}
         - {x: 38.6687, y: -0.31262207}
-    - name: firstAlienSpriteSheet_18
+    - name: firstAlienSpriteSheet 1_18
       rect:
         serializedVersion: 2
         x: 3579
@@ -696,7 +696,7 @@ TextureImporter:
         - {x: 2.3128662, y: 154.68738}
         - {x: 47.312866, y: 154.68738}
         - {x: 55.312866, y: -0.31262207}
-    - name: firstAlienSpriteSheet_19
+    - name: firstAlienSpriteSheet 1_19
       rect:
         serializedVersion: 2
         x: 4066
