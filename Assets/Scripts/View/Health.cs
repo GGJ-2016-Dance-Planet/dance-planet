@@ -22,7 +22,16 @@ public class Health : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        HealthStatus = 4;
-        Debug.Log (HealthStatus);
+        if (health <=0)
+        {
+            PlayerDie();
+        }
 	}
+
+    void PlayerDie()
+    {
+        
+
+    }
+
 }
