@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -527,6 +527,7 @@ GameObject:
   - 224: {fileID: 1396119898}
   - 222: {fileID: 1396119900}
   - 114: {fileID: 1396119899}
+  - 95: {fileID: 1396119901}
   m_Layer: 5
   m_Name: LeftText
   m_TagString: Untagged
@@ -563,7 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -590,6 +591,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1396119897}
+--- !u!95 &1396119901
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396119897}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff1cf3c3ed6a5bc4eb073d1858a4ebba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1412598129
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerText: {fileID: 1396119899}
   opponentText: {fileID: 338552765}
+  textAnimator: {fileID: 1396119901}
 --- !u!1001 &1449697595
 Prefab:
   m_ObjectHideFlags: 0

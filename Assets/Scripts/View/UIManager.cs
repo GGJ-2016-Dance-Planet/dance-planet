@@ -6,6 +6,7 @@ public class UIManager : Singleton<UIManager> {
 
     public Text playerText;
     public Text opponentText;
+    public Animator textAnimator;
     private bool isDisplaying = false;
 
     public void DisplayPlayerText(string text, float interval) {
@@ -17,12 +18,17 @@ public class UIManager : Singleton<UIManager> {
     }
 
     private void DisplayText(Text text, string textString, float interval) {
-        if (!isDisplaying) {
-            StartCoroutine(DoDisplay(text, textString, interval));
-        }
+        
+            // StartCoroutine(DoDisplay(text, textString, interval));
+            
+            text.text = textString;
+            isDisplaying = true;
+            textAnimator.speed = interval;
+            textAnimator.SetTrigger("FadeIn");
+            
     }
 
-    private IEnumerator DoDisplay(Text text, string textString, float interval) {
+        private IEnumerator DoDisplay(Text text, string textString, float interval) {
         isDisplaying = true;
         text.text = textString;
         var startColor = new Color (text.color.r, text.color.g, text.color.b, 0f);
