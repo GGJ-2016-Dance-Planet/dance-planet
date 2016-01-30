@@ -28,20 +28,21 @@ public class music_source_behavior : MonoBehaviour {
 	public float sample_rate;
 
 	//The variables associated with level 1 track
-	float level_1_bpm;
-	float level_1_sample_rate;
-	float level_1_beats_per_chunk;
+	float level_1_bpm = 60f;
+	float level_1_beats_per_chunk = 4f;
 
 
-	//The delegate to alert subscribers of which button to press and when
-	public delegate void press_button(List<button_to_press> chunk);
+	//The delegate to alert subscribers of which user/computer button to press and when
+    public delegate void user_press_button(List<button_to_press> user_input, float chunkDelay);
+    public delegate void computer_press_button(List<button_to_press> computer_input, float chunkDelay);
 
-	//The button press event to broadcast
-	public event press_button pressButton;
+	//The user/computer button press event to broadcast
+	public event user_press_button userPressButton;
+	public event computer_press_button computerPressButton;
 
 	//The list of buttons_to_pres
-	public List<button_to_press> required_user_input;
-	List<button_to_press> computer_beats;
+	public List<button_to_press> required_user_input = new List<button_to_press>();
+	public List<button_to_press> computer_beats = new List<button_to_press>();
 
 
 	void Start () 
@@ -49,72 +50,69 @@ public class music_source_behavior : MonoBehaviour {
 		//Find music controller
 		music_controller = GameObject.Find ("Music Controller");
 
+		if (music_controller != null)
+			Debug.Log ("Found Music Controller");
+
 		//Find music source
 		music_source = music_controller.GetComponent<AudioSource> ();
 
+		if (music_source != null)
+			Debug.Log ("Source Found: " + music_source.clip.name);
+
 		//Set bpm/beats per chunk
-		if(music_source.clip.name == "level1")
-		{
+		//if (music_source.clip.name == "level1") {
 			bpm = level_1_bpm;
-			sample_rate = level_1_sample_rate;
+			sample_rate = music_source.clip.frequency;
 			beats_per_chunk = level_1_beats_per_chunk;
-		}
+		//}
 
 		//Generate list of button_to_press structs
 		//Calculate number of beats in song
+
 		int num_beats = (int) ((music_source.clip.length / 60f) * bpm);
 
-		//Play audio clip -- make sure that clip isn't already playing
-		music_source.Play ();
-
-		//Get initial play time
-		float intial_play_time = Time.time;
-
 		//Generate list of buttons to press 
+		//Flag to flip between adding to user/computer beat stream
+		bool add_to_computer = false;
+
 		for(int i = 0; i < num_beats; i++)
 		{
+			//Toggle beat stream flag
+			if(i % beats_per_chunk == 0)
+				add_to_computer = !add_to_computer;
+
 			//Get Timestamp, window and key for each beat
-			float timestamp = intial_play_time + (i * (60/bpm));
-			float win = timestamp + (25f/bpm);
+			float timestamp = (i * (60/bpm));
+			float win = (30/bpm);
 			KeyCode[] keys = generateKey();
 			button_to_press b = new button_to_press(timestamp,win,keys);
 
-			//Add button_to_press to list
-			required_user_input.Add(b);
+			//Add button_to_press to correct list
+			if(add_to_computer)
+				computer_beats.Add (b);
+			else
+				required_user_input.Add(b);
 
 		}
 
-		//Divide out computer's beats
-		int num_chunks = (int)(num_beats / beats_per_chunk);
+        var chunkDelay = beats_per_chunk * (60 / bpm);
 
-		for(int j = 0; j < num_chunks; j++)
-		{
-			if(j%2 == 0)
-			{
-                int start_index = (int)(beats_per_chunk*j);
-				for(int k = 0; k < beats_per_chunk; k++)
-				{
-					//Add computer beats to relevant list
-					computer_beats.Add(required_user_input[start_index + k]);
+		//Send off list of computer beats
+        if (computerPressButton != null) {
+            computerPressButton (computer_beats, chunkDelay);
+        }
+		
 
-					//Delete computer beats from user list
-					required_user_input.RemoveAt(start_index + k);
+		//Send off list of user beats
+        if (userPressButton != null) {
+            userPressButton (required_user_input, chunkDelay);
+        }
 
-				}
-			}
-		}
+		//Output our user timestamps
+		outputBeatTimes (required_user_input, "User");
 
-		//Sync user keys to computer keys 
-		for(int l = 0; l < required_user_input.Count; l++)
-		{
-            var userOldButtonToPress = required_user_input [l];
-            var computerOldButtonToPress = computer_beats[l];
-            var newButton = new button_to_press (userOldButtonToPress.timestamp, userOldButtonToPress.window, computerOldButtonToPress.buttons);
-            required_user_input[l] = newButton;
-		}
-
-		if (pressButton != null)
-			pressButton (required_user_input);
+		//Output Computer timestamps
+		outputBeatTimes (computer_beats, "Computer");
 
 	}
 
@@ -123,8 +121,8 @@ public class music_source_behavior : MonoBehaviour {
 
 			//Array of potential keys
 			KeyCode[] potential_keys = new KeyCode[2];
-			potential_keys[1] = KeyCode.W;
-			potential_keys[2] =KeyCode.S;
+			potential_keys[0] = KeyCode.W;
+			potential_keys[1] =KeyCode.S;
 
 			//Create array
 			KeyCode[] return_array = new KeyCode[1];
@@ -140,11 +138,14 @@ public class music_source_behavior : MonoBehaviour {
 
 			return return_array;
 	}
-	
-	void Update () 
-	{
-		//Send off 
 
+	void outputBeatTimes(List<button_to_press> list, string user_or_computer)
+	{
+		//Iterate through list and output timestamps of each button press
+		for(int i = 0; i < list.Count; i++)
+		{
+			Debug.Log(user_or_computer + " | Beat: " + i + " | Timestamp: " + list[i].timestamp);
+		}
 	}
 
 

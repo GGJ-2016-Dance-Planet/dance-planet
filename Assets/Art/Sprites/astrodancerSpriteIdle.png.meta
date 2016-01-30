@@ -1,0 +1,293 @@
+fileFormatVersion: 2
+guid: f37df5f3c42844129bed26a94561f6ac
+timeCreated: 1454186303
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: astrodancerSpriteIdle_0
+    21300002: astrodancerSpriteIdle_1
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: astrodancerSpriteIdle_0
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 53
+        width: 422
+        height: 1126
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32, y: 1}
+        - {x: 33, y: 0}
+        - {x: 143, y: 0}
+        - {x: 143, y: 36}
+        - {x: 141, y: 38}
+        - {x: 108, y: 38}
+        - {x: 108, y: 90}
+        - {x: 107, y: 91}
+        - {x: 107, y: 253}
+        - {x: 106, y: 254}
+        - {x: 106, y: 315}
+        - {x: 107, y: 316}
+        - {x: 107, y: 352}
+        - {x: 106, y: 353}
+        - {x: 106, y: 415}
+        - {x: 105, y: 421}
+        - {x: 106, y: 422}
+        - {x: 106, y: 436}
+        - {x: 107, y: 437}
+        - {x: 107, y: 450}
+        - {x: 108, y: 451}
+        - {x: 108, y: 676}
+        - {x: 109, y: 677}
+        - {x: 109, y: 698}
+        - {x: 139, y: 698}
+        - {x: 138, y: 694}
+        - {x: 138, y: 385}
+        - {x: 140, y: 383}
+        - {x: 211, y: 383}
+        - {x: 211, y: 739}
+        - {x: 193, y: 739}
+        - {x: 192, y: 740}
+        - {x: 179, y: 740}
+        - {x: 179, y: 761}
+        - {x: 178, y: 762}
+        - {x: 178, y: 808}
+        - {x: 176, y: 810}
+        - {x: 143, y: 810}
+        - {x: 143, y: 843}
+        - {x: 141, y: 845}
+        - {x: 96, y: 845}
+        - {x: 95, y: 846}
+        - {x: 73, y: 846}
+        - {x: 73, y: 877}
+        - {x: 106, y: 877}
+        - {x: 108, y: 879}
+        - {x: 108, y: 912}
+        - {x: 141, y: 912}
+        - {x: 143, y: 914}
+        - {x: 143, y: 1055}
+        - {x: 141, y: 1057}
+        - {x: 108, y: 1057}
+        - {x: 108, y: 1090}
+        - {x: 106, y: 1092}
+        - {x: 73, y: 1092}
+        - {x: 73, y: 1126}
+        - {x: -73, y: 1126}
+        - {x: -73, y: 1092}
+        - {x: -106, y: 1092}
+        - {x: -108, y: 1090}
+        - {x: -108, y: 1057}
+        - {x: -141, y: 1057}
+        - {x: -143, y: 1055}
+        - {x: -143, y: 914}
+        - {x: -141, y: 912}
+        - {x: -108, y: 912}
+        - {x: -108, y: 879}
+        - {x: -106, y: 877}
+        - {x: -73, y: 877}
+        - {x: -73, y: 846}
+        - {x: -75, y: 845}
+        - {x: -141, y: 845}
+        - {x: -143, y: 843}
+        - {x: -143, y: 809}
+        - {x: -176, y: 809}
+        - {x: -178, y: 807}
+        - {x: -178, y: 761}
+        - {x: -179, y: 760}
+        - {x: -179, y: 742}
+        - {x: -180, y: 740}
+        - {x: -192, y: 740}
+        - {x: -193, y: 739}
+        - {x: -211, y: 739}
+        - {x: -211, y: 383}
+        - {x: -140, y: 383}
+        - {x: -138, y: 385}
+        - {x: -138, y: 683}
+        - {x: -139, y: 684}
+        - {x: -139, y: 698}
+        - {x: -109, y: 698}
+        - {x: -109, y: 587}
+        - {x: -108, y: 586}
+        - {x: -108, y: 38}
+        - {x: -141, y: 38}
+        - {x: -143, y: 36}
+        - {x: -143, y: 0}
+        - {x: -33, y: 0}
+        - {x: -33, y: 385}
+        - {x: 32, y: 385}
+    - name: astrodancerSpriteIdle_1
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 53
+        width: 422
+        height: 1094
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55, y: 268}
+        - {x: -36, y: 268}
+        - {x: -34, y: 270}
+        - {x: -34, y: 349}
+        - {x: -33, y: 350}
+        - {x: -33, y: 353}
+        - {x: 32, y: 353}
+        - {x: 32, y: 268}
+        - {x: 34, y: 266}
+        - {x: 52, y: 266}
+        - {x: 52, y: 234}
+        - {x: 34, y: 234}
+        - {x: 32, y: 232}
+        - {x: 32, y: 0}
+        - {x: 142, y: 0}
+        - {x: 142, y: 36}
+        - {x: 140, y: 38}
+        - {x: 107, y: 38}
+        - {x: 107, y: 230}
+        - {x: 123, y: 230}
+        - {x: 125, y: 232}
+        - {x: 125, y: 268}
+        - {x: 123, y: 270}
+        - {x: 105, y: 270}
+        - {x: 105, y: 292}
+        - {x: 106, y: 293}
+        - {x: 106, y: 404}
+        - {x: 107, y: 405}
+        - {x: 108, y: 419}
+        - {x: 108, y: 644}
+        - {x: 109, y: 645}
+        - {x: 109, y: 666}
+        - {x: 138, y: 662}
+        - {x: 138, y: 353}
+        - {x: 140, y: 351}
+        - {x: 211, y: 351}
+        - {x: 211, y: 707}
+        - {x: 193, y: 707}
+        - {x: 192, y: 708}
+        - {x: 179, y: 708}
+        - {x: 179, y: 729}
+        - {x: 178, y: 730}
+        - {x: 178, y: 776}
+        - {x: 176, y: 778}
+        - {x: 143, y: 778}
+        - {x: 143, y: 811}
+        - {x: 141, y: 813}
+        - {x: 96, y: 813}
+        - {x: 95, y: 814}
+        - {x: 73, y: 814}
+        - {x: 73, y: 845}
+        - {x: 106, y: 845}
+        - {x: 108, y: 847}
+        - {x: 108, y: 880}
+        - {x: 141, y: 880}
+        - {x: 143, y: 882}
+        - {x: 143, y: 1023}
+        - {x: 141, y: 1025}
+        - {x: 108, y: 1025}
+        - {x: 108, y: 1058}
+        - {x: 106, y: 1060}
+        - {x: 73, y: 1060}
+        - {x: 73, y: 1094}
+        - {x: -73, y: 1094}
+        - {x: -73, y: 1060}
+        - {x: -106, y: 1060}
+        - {x: -108, y: 1058}
+        - {x: -108, y: 1025}
+        - {x: -141, y: 1025}
+        - {x: -143, y: 1023}
+        - {x: -143, y: 882}
+        - {x: -141, y: 880}
+        - {x: -108, y: 880}
+        - {x: -108, y: 847}
+        - {x: -106, y: 845}
+        - {x: -73, y: 845}
+        - {x: -73, y: 814}
+        - {x: -75, y: 813}
+        - {x: -141, y: 813}
+        - {x: -143, y: 811}
+        - {x: -143, y: 777}
+        - {x: -176, y: 777}
+        - {x: -178, y: 775}
+        - {x: -178, y: 729}
+        - {x: -179, y: 728}
+        - {x: -179, y: 710}
+        - {x: -180, y: 708}
+        - {x: -192, y: 708}
+        - {x: -193, y: 707}
+        - {x: -211, y: 707}
+        - {x: -211, y: 351}
+        - {x: -140, y: 351}
+        - {x: -138, y: 353}
+        - {x: -138, y: 651}
+        - {x: -139, y: 652}
+        - {x: -139, y: 666}
+        - {x: -109, y: 666}
+        - {x: -109, y: 555}
+        - {x: -108, y: 554}
+        - {x: -108, y: 272}
+        - {x: -126, y: 272}
+        - {x: -128, y: 270}
+        - {x: -128, y: 234}
+        - {x: -126, y: 232}
+        - {x: -109, y: 232}
+        - {x: -109, y: 38}
+        - {x: -142, y: 38}
+        - {x: -144, y: 36}
+        - {x: -144, y: 0}
+        - {x: -34, y: 0}
+        - {x: -34, y: 234}
+        - {x: -36, y: 236}
+        - {x: -55, y: 236}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
