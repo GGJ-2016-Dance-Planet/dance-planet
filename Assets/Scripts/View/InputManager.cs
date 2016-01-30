@@ -1,8 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class InputManager : MonoBehaviour {
+public class InputManager : Singleton<InputManager> {
 
     public Health health;
 
@@ -10,49 +11,69 @@ public class InputManager : MonoBehaviour {
     public float good = 1f/2f;
     public float okay = 1f;
 
-    //public event Action<List<Tuple<KeyCode, float, float>>> myEvent;
+    private button_to_press currentChunk;
+    private bool chunkValid = false;
+    private float timeOffset;
+
+    private HashSet<KeyCode> validInputs = new HashSet<KeyCode> (new KeyCode[] {
+        KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D,
+        KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow
+    });
+
+    public event Action<Ratings> OnRating;
 
 	// Use this for initialization
 	void Start () {
-        //myEvent += respondToInput;
-	}
-
-    void Update () {
-        
+        MusicChunkAdapter.Instance.OnChunk += cacheChunk;
+        OnRating += (rating) => {
+            Debug.Log(rating.ToString());
+        };
     }
 
-    IEnumerator makeRandomEvents() {
-        while (true) {
-            yield return new WaitForSeconds(30f);
-            for (int i = 0; i < 10; i++) {
-                
+    void cacheChunk(float timeOffset, button_to_press chunk) {
+        UIManager.Instance.DisplayPlayerText (chunk.buttons[0].ToString(), chunk.window*2f);
+        currentChunk = chunk;
+        chunkValid = true;
+        this.timeOffset = timeOffset;
+    }
+
+    void Update() {
+        if (chunkValid) {
+            var now = Time.time - timeOffset;
+            if (now > currentChunk.timestamp + currentChunk.window) {
+                OnRating (Ratings.BAD);
+                chunkValid = false;
+            } else {
+                var key = getKey ();
+                if (validInputs.Contains(key)) {
+                    respondToInput (getKey(), currentChunk);
+                    chunkValid = false;
+                }
             }
-            //var key = getRandomKey ();
-            //myEvent(key, Time.time + 1f, )
         }
     }
 
-    KeyCode getRandomKey() {
-        var randfloat = UnityEngine.Random.value;
-        //KeyCode key = null;
-        if (randfloat < 1f) {
-            return KeyCode.W;
-        } else if (randfloat < 0.75f) {
-            return KeyCode.A;
-        } else if (randfloat < 0.5f) {
-            return KeyCode.S;
+    KeyCode getKey() {
+        foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode))) {
+            if (Input.GetKeyDown (kcode)) {
+                return kcode;
+            }
+        }
+        return KeyCode.Underscore;
+    }
+
+    void respondToInput(KeyCode keyPressed, button_to_press chunk) {
+        var keyExpected = chunk.buttons [0];
+        if (keyPressed == keyExpected) {
+            var rating = getRatingForInput (chunk.timestamp, chunk.window);
+            OnRating (rating);
         } else {
-            return KeyCode.D;
+            OnRating (Ratings.BAD);
         }
-    }
-
-    void respondToInput(KeyCode key, float timestamp, float offset) {
-        var rating = getRatingForInput (timestamp, offset);
-        health.resultHappened (rating);
     }
 
     Ratings getRatingForInput(float timestamp, float offset) {
-        var now = Time.time;
+        var now = Time.time - timeOffset;
         var rating = Mathf.Abs (now - timestamp);
         if (rating < offset * perfect) {
             return Ratings.PERFECT;

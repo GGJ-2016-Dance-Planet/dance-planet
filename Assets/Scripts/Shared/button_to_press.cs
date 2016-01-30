@@ -6,16 +6,16 @@ public struct button_to_press
 	//Variables
 	public float timestamp;
 	public float window;
-	string button;
+    public KeyCode[] buttons;
 	
 	//Constructor
 	public button_to_press(float _timestamp,
 	                       float _window,
-	                       string _button)
+                           KeyCode[] _buttons)
 	{
 		timestamp = _timestamp;
 		window = _window;
-		button = _button;
+        buttons = _buttons;
 	}
 	
 }
