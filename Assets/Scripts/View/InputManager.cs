@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class InputManager : MonoBehaviour {
+public class InputManager : Singleton<InputManager> {
 
     public Health health;
 
@@ -25,10 +25,13 @@ public class InputManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         MusicChunkAdapter.Instance.OnChunk += cacheChunk;
-        OnRating += (rating) => {Debug.Log(rating.ToString());};
+        OnRating += (rating) => {
+            Debug.Log(rating.ToString());
+        };
     }
 
     void cacheChunk(float timeOffset, button_to_press chunk) {
+        UIManager.Instance.DisplayPlayerText (chunk.buttons[0].ToString(), chunk.window*2f);
         currentChunk = chunk;
         chunkValid = true;
         this.timeOffset = timeOffset;
