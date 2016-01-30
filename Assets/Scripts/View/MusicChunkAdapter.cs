@@ -5,17 +5,17 @@ using System;
 
 public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
 
-    private static float chunkDelay = 5f;
+    private static float chunkDelay = 2f;
 
     public music_source_behavior music;
-    public event Action<button_to_press> OnChunk;
+    public event Action<float, button_to_press> OnChunk;
 
 	void Start () {
 //        music.pressButton += RerouteChunks;
         List<button_to_press> randomButtons = new List<button_to_press>();
-        for (float f = 0; f < 100; f++) {
+        for (float f = 1; f < 100; f++) {
             var timestamp = f * chunkDelay;
-            var offset = 0.5f;
+            var offset = 0.9f;
             randomButtons.Add (new button_to_press (timestamp, offset, new KeyCode[]{ getRandomKey() }));
         }
         RerouteChunks (randomButtons);
@@ -36,12 +36,18 @@ public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
     }
 
     IEnumerator ChunkDaemon(Queue<button_to_press> sequence) {
+        for (int i = 3; i > 0; i--) {
+            yield return new WaitForSeconds (chunkDelay);
+            Debug.Log (i);
+        }
+        yield return new WaitForSeconds (chunkDelay);
+        float timeOffset = Time.time;
         while (true) {
             var chunk = sequence.Peek ();
-            var now = Time.time;
-            if (chunk.timestamp - now < chunkDelay) {
+            var now = Time.time - timeOffset;
+            if (chunk.timestamp - chunk.window - now < 0) {
                 if (OnChunk != null) {
-                    OnChunk (sequence.Dequeue ());
+                    OnChunk (timeOffset, sequence.Dequeue ());
                 }
             }
             yield return null;
