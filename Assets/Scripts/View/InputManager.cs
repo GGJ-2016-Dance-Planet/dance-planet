@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class InputManager : MonoBehaviour {
 
@@ -10,45 +11,21 @@ public class InputManager : MonoBehaviour {
     public float good = 1f/2f;
     public float okay = 1f;
 
-    //public event Action<List<Tuple<KeyCode, float, float>>> myEvent;
-
 	// Use this for initialization
 	void Start () {
-        //myEvent += respondToInput;
+        MusicChunkAdapter.Instance.OnChunk += (button_to_press obj) => {
+            Debug.Log(obj.buttons[0].ToString());
+        };
 	}
 
     void Update () {
         
     }
 
-    IEnumerator makeRandomEvents() {
-        while (true) {
-            yield return new WaitForSeconds(30f);
-            for (int i = 0; i < 10; i++) {
-                
-            }
-            //var key = getRandomKey ();
-            //myEvent(key, Time.time + 1f, )
-        }
-    }
-
-    KeyCode getRandomKey() {
-        var randfloat = UnityEngine.Random.value;
-        //KeyCode key = null;
-        if (randfloat < 1f) {
-            return KeyCode.W;
-        } else if (randfloat < 0.75f) {
-            return KeyCode.A;
-        } else if (randfloat < 0.5f) {
-            return KeyCode.S;
-        } else {
-            return KeyCode.D;
-        }
-    }
-
-    void respondToInput(KeyCode key, float timestamp, float offset) {
-        var rating = getRatingForInput (timestamp, offset);
-        health.resultHappened (rating);
+    void respondToInput(button_to_press chunks) {
+        var key = chunks.buttons [0];
+//        var rating = getRatingForInput (chunks, offset);
+        //health.resultHappened (rating);
     }
 
     Ratings getRatingForInput(float timestamp, float offset) {
