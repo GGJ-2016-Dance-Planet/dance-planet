@@ -20,7 +20,6 @@ public class music_source_behavior : MonoBehaviour {
 	public float sample_rate;
 
 	//The variables associated with level 1 track
-	float level_1_bpm = 40f;
 	float level_1_beats_per_chunk = 4f;
 
 
@@ -53,9 +52,8 @@ public class music_source_behavior : MonoBehaviour {
 
 		//Set bpm/beats per chunk
 		//if (music_source.clip.name == "level1") {
-			bpm = level_1_bpm;
-			sample_rate = music_source.clip.frequency;
-			beats_per_chunk = level_1_beats_per_chunk;
+		sample_rate = music_source.clip.frequency;
+		beats_per_chunk = level_1_beats_per_chunk;
 		//}
 
 		//Generate list of button_to_press structs

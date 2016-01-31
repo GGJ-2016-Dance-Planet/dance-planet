@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : Singleton<UIManager> {
 
@@ -12,7 +13,9 @@ public class UIManager : Singleton<UIManager> {
     public Animator centerAnim;
 
     void Awake() {
-        MusicChunkAdapter.Instance.OnPlayerChunk += OnPlayerChunkDo;
+        if (SceneManager.GetActiveScene ().buildIndex == 1) {
+            MusicChunkAdapter.Instance.OnPlayerChunk += OnPlayerChunkDo;
+        }
         MusicChunkAdapter.Instance.OnComputerChunk += OnComputerChunkDo;
         InputManager.Instance.OnRating += OnRatingDo;
     }

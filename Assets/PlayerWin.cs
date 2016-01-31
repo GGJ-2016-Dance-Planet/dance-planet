@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerWin : MonoBehaviour {
 
@@ -22,10 +23,11 @@ public class PlayerWin : MonoBehaviour {
             this.transform.position = Vector3.Lerp(startPos, endPos, t);
         }));
         animator.applyRootMotion = false;
+        this.transform.parent = this.transform.parent.parent;
         animator.SetTrigger("win_trigger");
     }
 	
     public void KillMe() {
-        Destroy(this.gameObject);
+        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
     }
 }

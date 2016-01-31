@@ -29,7 +29,7 @@ public class Health : MonoBehaviour {
          
         if (rating == Ratings.BAD)
         {
-            health -= 0.5f;
+            health -= 0.2f;
             HealthUpdate(health);
         }
         	
