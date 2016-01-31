@@ -228,6 +228,7 @@ Transform:
   - {fileID: 2126269732}
   - {fileID: 659347877}
   - {fileID: 2081299533}
+  - {fileID: 1699788504}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &610478261
@@ -989,6 +990,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa17ad08eed1c460aa62727887ac95b5, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1466632523
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 610478260}
+    m_Modifications:
+    - target: {fileID: 443806, guid: 32ba03380b5a9e940906c572af8082dd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 443806, guid: 32ba03380b5a9e940906c572af8082dd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 443806, guid: 32ba03380b5a9e940906c572af8082dd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 443806, guid: 32ba03380b5a9e940906c572af8082dd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7286476
+      objectReference: {fileID: 0}
+    - target: {fileID: 443806, guid: 32ba03380b5a9e940906c572af8082dd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443806, guid: 32ba03380b5a9e940906c572af8082dd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443806, guid: 32ba03380b5a9e940906c572af8082dd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.68488884
+      objectReference: {fileID: 0}
+    - target: {fileID: 443806, guid: 32ba03380b5a9e940906c572af8082dd, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 32ba03380b5a9e940906c572af8082dd, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1578840070 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 160590, guid: fa17ad08eed1c460aa62727887ac95b5, type: 2}
@@ -1235,6 +1278,10 @@ MonoBehaviour:
   bpm: 60
   beats_per_chunk: 4
   sample_rate: 0
+--- !u!4 &1699788504 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 443806, guid: 32ba03380b5a9e940906c572af8082dd, type: 2}
+  m_PrefabInternal: {fileID: 1466632523}
 --- !u!1 &1701523812 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 198948, guid: 693c07a701d5344bda96ace9729ab147, type: 2}
