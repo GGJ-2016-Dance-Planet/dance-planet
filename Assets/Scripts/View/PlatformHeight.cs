@@ -5,6 +5,7 @@ public class PlatformHeight : MonoBehaviour
 {
 
     public Health health;
+    public float decrement = 0.3f;
 
     // Use this for initialization
     void Start()
@@ -16,8 +17,11 @@ public class PlatformHeight : MonoBehaviour
 
     public void ChangeHeight(float change)
     {
-        // modify platform height "change" amount
-        transform.localScale = new Vector3(0f, change, 0f);
+        
+        // modify platform height amount
+        transform.Translate(0, (decrement * change), 0);
+        
+        //if ()
 
     }
 
