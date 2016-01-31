@@ -12,11 +12,16 @@ public class UIManager : Singleton<UIManager> {
     public Animator centerAnim;
 
     void Start() {
-        MusicChunkAdapter.Instance.OnChunk += (float offset, button_to_press btp) => {
+        MusicChunkAdapter.Instance.OnPlayerChunk += (float offset, button_to_press btp) => {
+            Debug.Log(btp.timestamp + " Player " + Time.time);
+            DisplayCenterText(btp.buttons[0].ToString(), btp.window, true);
+        };
+        MusicChunkAdapter.Instance.OnComputerChunk += (float offset, button_to_press btp) => {
+            Debug.Log(btp.timestamp + " Computer " + Time.time);
             DisplayCenterText(btp.buttons[0].ToString(), btp.window, true);
         };
         InputManager.Instance.OnRating += (Ratings rating) => {
-            DisplayPlayerText(rating.ToString().ToLower(), 0.2f);
+            DisplayPlayerText(rating.ToString().ToLower(), 0.7f);
         };
     }
 
@@ -36,11 +41,9 @@ public class UIManager : Singleton<UIManager> {
         text.text = textString;
         textAnimator.speed = 1f / interval;
         if (flash) {
-            Debug.Log ("Display Called");
-
             textAnimator.SetTrigger ("FadeInAndFlash");
         } else {
-            textAnimator.SetTrigger ("FadeIn");
+            textAnimator.SetTrigger ("FadeInAndFlash");
         }
         textAnimator.speed = 1f / interval;
     }

@@ -28,7 +28,7 @@ public class music_source_behavior : MonoBehaviour {
 	public float sample_rate;
 
 	//The variables associated with level 1 track
-	float level_1_bpm = 60f;
+	float level_1_bpm = 40f;
 	float level_1_beats_per_chunk = 4f;
 
 
@@ -74,26 +74,68 @@ public class music_source_behavior : MonoBehaviour {
 		//Generate list of buttons to press 
 		//Flag to flip between adding to user/computer beat stream
 		bool add_to_computer = false;
+        float win = (30f/bpm);
+        List<float> userTimestamps = new List<float> ();
+        List<float> comptuerTimestamps = new List<float> ();
+        for (int i = 0; i < num_beats; i++) {
+            float timestamp = (((float)i + beats_per_chunk) * (60f/bpm));
+            Debug.Log (timestamp.ToString() + "dsafafdsfdas");
+            //Toggle beat stream flag
+            if(i % beats_per_chunk == 0)
+                add_to_computer = !add_to_computer;
+            //Add button_to_press to correct list
+            if (add_to_computer) {
+                comptuerTimestamps.Add (timestamp);
+            } else {
+                userTimestamps.Add (timestamp);
+            }
+        }
+        for (int i = 0; i < Mathf.Min(comptuerTimestamps.Count, userTimestamps.Count); i++) {
+            var buttons = generateKey ();
+            computer_beats.Add (new button_to_press (comptuerTimestamps [i], win, buttons));
+            required_user_input.Add (new button_to_press (userTimestamps [i], win, buttons));
+        }
 
-		for(int i = 0; i < num_beats; i++)
-		{
-			//Toggle beat stream flag
-			if(i % beats_per_chunk == 0)
-				add_to_computer = !add_to_computer;
+        if (computer_beats.Count < required_user_input.Count) {
+            while (computer_beats.Count < required_user_input.Count) {
+                required_user_input.RemoveAt (required_user_input.Count - 1);
+            }
+        }
 
-			//Get Timestamp, window and key for each beat
-			float timestamp = (i * (60/bpm));
-			float win = (30/bpm);
-			KeyCode[] keys = generateKey();
-			button_to_press b = new button_to_press(timestamp,win,keys);
+        if (computer_beats.Count > required_user_input.Count) {
+            while (computer_beats.Count > required_user_input.Count) {
+                computer_beats.RemoveAt (computer_beats.Count - 1);
+            }
+        }
 
-			//Add button_to_press to correct list
-			if(add_to_computer)
-				computer_beats.Add (b);
-			else
-				required_user_input.Add(b);
+        int rem = computer_beats.Count % (int)beats_per_chunk;
+        for (int i = 0; i < rem; i++) {
+            required_user_input.RemoveAt (required_user_input.Count - 1);
+            computer_beats.RemoveAt (computer_beats.Count - 1);
+        }
 
-		}
+//		for(int i = 0; i < num_beats; i++)
+//		{
+//			//Toggle beat stream flag
+//			if(i % beats_per_chunk == 0)
+//				add_to_computer = !add_to_computer;
+//
+//			//Get Timestamp, window and key for each beat
+//			float timestamp = (i * (60/bpm));
+//			float win = (30/bpm);
+//			KeyCode[] keys = generateKey();
+//			button_to_press b = new button_to_press(timestamp,win,keys);
+//
+//			//Add button_to_press to correct list
+//            if (add_to_computer) {
+//                computer_beats.Add (b);
+//            } else {
+//                KeyCode[] prevButtons = computer_beats [i - ((int)beats_per_chunk)].buttons;
+//                var userButton = new button_to_press(timestamp, win, prevButtons);
+//                required_user_input.Add (userButton);
+//            }
+//
+//		}
 
         var chunkDelay = beats_per_chunk * (60 / bpm);
 
@@ -119,24 +161,26 @@ public class music_source_behavior : MonoBehaviour {
 	KeyCode[] generateKey()
 	{
 
-			//Array of potential keys
-			KeyCode[] potential_keys = new KeyCode[2];
-			potential_keys[0] = KeyCode.W;
-			potential_keys[1] =KeyCode.S;
+		//Array of potential keys
+		KeyCode[] potential_keys = new KeyCode[4];
+		potential_keys [0] = KeyCode.W;
+        potential_keys [1] = KeyCode.A;
+		potential_keys [2] = KeyCode.S;
+        potential_keys [3] = KeyCode.D;
 
-			//Create array
-			KeyCode[] return_array = new KeyCode[1];
+		//Create array
+		KeyCode[] return_array = new KeyCode[1];
 
-			//Add keys to return array
-			for(int i = 0; i < return_array.Length; i++)
-			{
-				int random_key = Random.Range(0,potential_keys.Length);
+		//Add keys to return array
+		for(int i = 0; i < return_array.Length; i++)
+		{
+			int random_key = Random.Range(0,potential_keys.Length);
 
-				return_array[i] = potential_keys[random_key];
+			return_array[i] = potential_keys[random_key];
 
-			}
+		}
 
-			return return_array;
+		return return_array;
 	}
 
 	void outputBeatTimes(List<button_to_press> list, string user_or_computer)

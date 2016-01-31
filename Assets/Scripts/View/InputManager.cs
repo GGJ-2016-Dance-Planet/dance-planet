@@ -15,6 +15,7 @@ public class InputManager : Singleton<InputManager> {
     private bool chunkValid = false;
     private float timeOffset;
 
+    public Animator currentOponentAnimator;
     public Animator currentPlayerAnimator;
     public AudioSource sauce;
 
@@ -27,9 +28,9 @@ public class InputManager : Singleton<InputManager> {
 
 	// Use this for initialization
 	void Start () {
-        MusicChunkAdapter.Instance.OnChunk += cacheChunk;
-        OnRating += (rating) => {
-            Debug.Log(rating.ToString());
+        MusicChunkAdapter.Instance.OnPlayerChunk += cacheChunk;
+        MusicChunkAdapter.Instance.OnComputerChunk += (float timeOffset, button_to_press chunk) => {
+            currentOponentAnimator.SetTrigger(chunk.buttons[0].ToString().ToLower() + "_trigger");
         };
     }
 
@@ -40,8 +41,8 @@ public class InputManager : Singleton<InputManager> {
     }
 
     void Update() {
+        var now = sauce.time - timeOffset;
         if (chunkValid) {
-            var now = sauce.time - timeOffset;
             if (now > currentChunk.timestamp + currentChunk.window) {
                 OnRating (Ratings.BAD);
                 chunkValid = false;

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Alien1
+  m_Controller: {fileID: 9100000, guid: 3d6b9f9ba5c394632befdf5b301699f9, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 3eb72fb7eae174b7c9d5bdaf0d3a184d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0ad00bcc6b38d5d4cadf8ebb020f6bc1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 195dc05aeb72247e0be2418de248b0cf, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6b311bfd80a200d46b46eeb23a57b069, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a8868625d891f4fe2a53581a6fa72950, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4eba593df2d4a9b4b96bd5300bb0c5aa, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ffdea96d4194b4e68bc0c0a8194c346d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: abcf73f3cad28cd45871f59e88c334b3, type: 2}

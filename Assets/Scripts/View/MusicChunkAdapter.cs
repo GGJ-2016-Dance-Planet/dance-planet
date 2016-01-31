@@ -6,34 +6,57 @@ using System;
 public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
 
     public music_source_behavior music;
-    public event Action<float, button_to_press> OnChunk;
+    public event Action<float, button_to_press> OnPlayerChunk;
+    public event Action<float, button_to_press> OnComputerChunk;
     public AudioSource audioSource;
+    private float timeOffset = -1f;
 
 	void Awake () {
-        music.userPressButton += RerouteChunks;
+        music.userPressButton += ReroutePlayerChunks;
+        music.computerPressButton += RerouteComputerChunks;
     }
 
-    IEnumerator ChunkDaemon(Queue<button_to_press> sequence, float chunkDelay) {
+    IEnumerator PlayerChunkDaemon(Queue<button_to_press> sequence, float chunkDelay) {
         audioSource.Play ();
+        timeOffset = audioSource.time;
         for (int i = 3; i > 0; i--) {
-            yield return new WaitForSeconds (chunkDelay);
-            UIManager.Instance.DisplayCenterText (i.ToString (), chunkDelay / 2f, false);
+            yield return new WaitForSeconds (chunkDelay/4f);
+            UIManager.Instance.DisplayCenterText (i.ToString (), chunkDelay / 8f, false);
         }
-        yield return new WaitForSeconds (chunkDelay);
-        float timeOffset = audioSource.time;
-        while (true) {
+        yield return new WaitForSeconds (chunkDelay/4f);
+        while (sequence.Count > 1) {
             var chunk = sequence.Peek ();
             var now = Time.time - timeOffset;
             if (chunk.timestamp - chunk.window - now < 0) {
-                if (OnChunk != null) {
-                    OnChunk (timeOffset, sequence.Dequeue ());
+                if (OnPlayerChunk != null) {
+                    OnPlayerChunk (timeOffset, sequence.Dequeue ());
                 }
             }
             yield return null;
         }
     }
 
-    void RerouteChunks(List<button_to_press> sequence, float chunkDelay) {
-        StartCoroutine (ChunkDaemon (new Queue<button_to_press> (sequence), chunkDelay));
+    IEnumerator ComputerChunkDaemon(Queue<button_to_press> sequence) {
+        while (timeOffset == -1f) {
+            yield return null;
+        }
+        while (sequence.Count > 1) {
+            var chunk = sequence.Peek ();
+            var now = Time.time - timeOffset;
+            if (chunk.timestamp - chunk.window - now < 0) {
+                if (OnComputerChunk != null) {
+                    OnComputerChunk (timeOffset, sequence.Dequeue ());
+                }
+            }
+            yield return null;
+        }
+    }
+
+    void ReroutePlayerChunks(List<button_to_press> sequence, float chunkDelay) {
+        StartCoroutine (PlayerChunkDaemon (new Queue<button_to_press> (sequence), chunkDelay));
+    }
+
+    void RerouteComputerChunks(List<button_to_press> sequence, float chunkDelay) {
+        StartCoroutine (ComputerChunkDaemon (new Queue<button_to_press> (sequence)));
     }
 }

@@ -7,7 +7,7 @@ public class PlayerAnimationNormalizer : MonoBehaviour {
     public music_source_behavior music;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         music.computerPressButton += (computer_input, chunkDelay) => {
             var foo = 1f / (chunkDelay / (float)music.beats_per_chunk);
             animator.speed = foo;
