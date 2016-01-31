@@ -22,7 +22,7 @@ public class Health : MonoBehaviour {
     public event playerdead DeathEvent;
 
     // declaring health change delegate
-    public delegate void healthupdate(float currentHealth);
+    public delegate void healthupdate(float change);
 
     // declaring health change event
     public event healthupdate HealthUpdate;
@@ -30,6 +30,7 @@ public class Health : MonoBehaviour {
 
     void Start()
     {
+        health = 1.0f;
         InputManager.Instance.OnRating += resultHappened;
     }
 
@@ -37,16 +38,18 @@ public class Health : MonoBehaviour {
          
         if (rating == Ratings.BAD)
         {
-            HealthStatus -= 0.1f;
+            HealthStatus -= 0.2f;
+            HealthUpdate(HealthStatus);
         }
         if (rating == Ratings.PERFECT)
         {
-            HealthStatus += 0.1f;
+            HealthStatus += 0.2f;
+            HealthUpdate(HealthStatus);
         }
 
-        HealthUpdate(health);
+        
         	
-        if (HealthStatus <=0)
+        if (health <=0)
         {
             // player death event
             if (DeathEvent != null)
