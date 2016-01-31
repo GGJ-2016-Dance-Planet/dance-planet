@@ -68,21 +68,34 @@ public class music_source_behavior : MonoBehaviour {
 
 		//Generate list of button_to_press structs
 		//Calculate number of beats in song
+		int num_beats = (int)beats_per_chunk * 1000;//(int) ((music_source.clip.length / 60f) * bpm);
 
-		int num_beats = (int) ((music_source.clip.length / 60f) * bpm);
+		//Ensure that beats are a multiple of beats_per_chunk
+		int beats_remaining = num_beats % (int)beats_per_chunk;
+		if(beats_remaining != 0)
+		{
+			num_beats +=((int)beats_per_chunk - beats_remaining);
+		}
 
 		//Generate list of buttons to press 
 		//Flag to flip between adding to user/computer beat stream
 		bool add_to_computer = false;
+
+		//The window within which user can press button
         float win = (30f/bpm);
+
+		//Lists of timestamps for user/computer
         List<float> userTimestamps = new List<float> ();
         List<float> comptuerTimestamps = new List<float> ();
+
+		//Generate timestamps for user/computer
         for (int i = 0; i < num_beats; i++) {
             float timestamp = (((float)i + beats_per_chunk) * (60f/bpm));
-            Debug.Log (timestamp.ToString() + "dsafafdsfdas");
+
             //Toggle beat stream flag
             if(i % beats_per_chunk == 0)
                 add_to_computer = !add_to_computer;
+
             //Add button_to_press to correct list
             if (add_to_computer) {
                 comptuerTimestamps.Add (timestamp);
@@ -90,54 +103,38 @@ public class music_source_behavior : MonoBehaviour {
                 userTimestamps.Add (timestamp);
             }
         }
+
+		//Sync up buttons between user and computer
         for (int i = 0; i < Mathf.Min(comptuerTimestamps.Count, userTimestamps.Count); i++) {
             var buttons = generateKey ();
             computer_beats.Add (new button_to_press (comptuerTimestamps [i], win, buttons));
             required_user_input.Add (new button_to_press (userTimestamps [i], win, buttons));
         }
 
+		//Ensure that both lists are the same size
         if (computer_beats.Count < required_user_input.Count) {
             while (computer_beats.Count < required_user_input.Count) {
                 required_user_input.RemoveAt (required_user_input.Count - 1);
             }
         }
 
+		//Ensure that both lists are the same size
         if (computer_beats.Count > required_user_input.Count) {
             while (computer_beats.Count > required_user_input.Count) {
                 computer_beats.RemoveAt (computer_beats.Count - 1);
             }
         }
 
+		//Ensure that total elements in list is a multiple of beats_per_chunk
         int rem = computer_beats.Count % (int)beats_per_chunk;
         for (int i = 0; i < rem; i++) {
             required_user_input.RemoveAt (required_user_input.Count - 1);
             computer_beats.RemoveAt (computer_beats.Count - 1);
         }
 
-//		for(int i = 0; i < num_beats; i++)
-//		{
-//			//Toggle beat stream flag
-//			if(i % beats_per_chunk == 0)
-//				add_to_computer = !add_to_computer;
-//
-//			//Get Timestamp, window and key for each beat
-//			float timestamp = (i * (60/bpm));
-//			float win = (30/bpm);
-//			KeyCode[] keys = generateKey();
-//			button_to_press b = new button_to_press(timestamp,win,keys);
-//
-//			//Add button_to_press to correct list
-//            if (add_to_computer) {
-//                computer_beats.Add (b);
-//            } else {
-//                KeyCode[] prevButtons = computer_beats [i - ((int)beats_per_chunk)].buttons;
-//                var userButton = new button_to_press(timestamp, win, prevButtons);
-//                required_user_input.Add (userButton);
-//            }
-//
-//		}
 
-        var chunkDelay = beats_per_chunk * (60 / bpm);
+
+        var chunkDelay = beats_per_chunk * (60f / bpm);
 
 		//Send off list of computer beats
         if (computerPressButton != null) {
