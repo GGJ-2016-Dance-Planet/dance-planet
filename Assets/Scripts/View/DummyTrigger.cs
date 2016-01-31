@@ -6,7 +6,7 @@ public class DummyTrigger : MonoBehaviour {
     Animator anim;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         anim = GetComponent<Animator>();
 	}
 	

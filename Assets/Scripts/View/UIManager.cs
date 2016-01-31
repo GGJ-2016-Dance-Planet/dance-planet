@@ -11,18 +11,22 @@ public class UIManager : Singleton<UIManager> {
     public Text centerText;
     public Animator centerAnim;
 
-    void Start() {
-        MusicChunkAdapter.Instance.OnPlayerChunk += (float offset, button_to_press btp) => {
-            Debug.Log(btp.timestamp + " Player " + Time.time);
-            DisplayCenterText(btp.buttons[0].ToString(), btp.window, true);
-        };
-        MusicChunkAdapter.Instance.OnComputerChunk += (float offset, button_to_press btp) => {
-            Debug.Log(btp.timestamp + " Computer " + Time.time);
-            DisplayCenterText(btp.buttons[0].ToString(), btp.window, true);
-        };
-        InputManager.Instance.OnRating += (Ratings rating) => {
-            DisplayPlayerText(rating.ToString().ToLower(), 0.7f);
-        };
+    void Awake() {
+        MusicChunkAdapter.Instance.OnPlayerChunk += OnPlayerChunkDo;
+        MusicChunkAdapter.Instance.OnComputerChunk += OnComputerChunkDo;
+        InputManager.Instance.OnRating += OnRatingDo;
+    }
+
+    void OnPlayerChunkDo(float offset, button_to_press btp) {
+        DisplayCenterText(btp.buttons[0].ToString(), btp.window, true);
+    }
+
+    void OnComputerChunkDo(float offset, button_to_press btp) {
+        DisplayCenterText(btp.buttons[0].ToString(), btp.window, true);
+    }
+
+    void OnRatingDo(Ratings rating) {
+        DisplayPlayerText(rating.ToString().ToLower(), 0.7f);
     }
 
     public void DisplayPlayerText(string text, float interval) {

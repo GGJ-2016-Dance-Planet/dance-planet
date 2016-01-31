@@ -27,11 +27,13 @@ public class InputManager : Singleton<InputManager> {
     public event Action<Ratings> OnRating;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         MusicChunkAdapter.Instance.OnPlayerChunk += cacheChunk;
-        MusicChunkAdapter.Instance.OnComputerChunk += (float timeOffset, button_to_press chunk) => {
-            currentOponentAnimator.SetTrigger(chunk.buttons[0].ToString().ToLower() + "_trigger");
-        };
+        MusicChunkAdapter.Instance.OnComputerChunk += DoComputerChunk;
+    }
+
+    void DoComputerChunk(float timeOffset, button_to_press chunk) {
+        currentOponentAnimator.SetTrigger(chunk.buttons[0].ToString().ToLower() + "_trigger");
     }
 
     void cacheChunk(float timeOffset, button_to_press chunk) {
@@ -44,6 +46,7 @@ public class InputManager : Singleton<InputManager> {
         var now = sauce.time - timeOffset;
         if (chunkValid) {
             if (now > currentChunk.timestamp + currentChunk.window) {
+                Debug.Log (now - currentChunk.timestamp - currentChunk.window);
                 OnRating (Ratings.BAD);
                 chunkValid = false;
             } else {
@@ -79,7 +82,7 @@ public class InputManager : Singleton<InputManager> {
     }
 
     Ratings getRatingForInput(float timestamp, float offset) {
-        var now = Time.time - timeOffset;
+        var now = Time.timeSinceLevelLoad - timeOffset;
         var rating = Mathf.Abs (now - timestamp);
         if (rating < offset * perfect) {
             return Ratings.PERFECT;

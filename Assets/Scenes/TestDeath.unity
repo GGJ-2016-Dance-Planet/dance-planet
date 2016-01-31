@@ -304,6 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music: {fileID: 1674477225}
   audioSource: {fileID: 1674477223}
+  chunksCleared: 0
 --- !u!1 &944427223
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +498,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 456334, guid: a05749d169f1542f2bd3161b16f38168, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.089
       objectReference: {fileID: 0}
     - target: {fileID: 479606, guid: a05749d169f1542f2bd3161b16f38168, type: 2}
       propertyPath: m_LocalRotation.z
@@ -1111,7 +1112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e3751a5bade4d01915260ca5741162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
 --- !u!60 &1701523817
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -5,15 +5,6 @@ using System.Collections;
 public class Health : MonoBehaviour {
 
     private float health;
-    private float HealthStatus {
-        get {
-            return health;
-        }
-        set {
-            health = Mathf.Clamp01 (health + value);
-        }
-    }
-    public float maxHealth;
 
     // declaring death delegate
     public delegate void playerdead();
@@ -28,7 +19,7 @@ public class Health : MonoBehaviour {
     public event healthupdate HealthUpdate;
 
 
-    void Start()
+    void Awake()
     {
         health = 1.0f;
         InputManager.Instance.OnRating += resultHappened;
@@ -38,16 +29,9 @@ public class Health : MonoBehaviour {
          
         if (rating == Ratings.BAD)
         {
-            HealthStatus -= 0.2f;
-            HealthUpdate(HealthStatus);
+            health -= 0.5f;
+            HealthUpdate(health);
         }
-        if (rating == Ratings.PERFECT)
-        {
-            HealthStatus += 0.2f;
-            HealthUpdate(HealthStatus);
-        }
-
-        
         	
         if (health <=0)
         {

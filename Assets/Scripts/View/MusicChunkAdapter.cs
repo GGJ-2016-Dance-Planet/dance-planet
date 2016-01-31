@@ -28,7 +28,7 @@ public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
         yield return new WaitForSeconds (chunkDelay/4f);
         while (sequence.Count >= 1) {
             var chunk = sequence.Peek ();
-            var now = Time.time - timeOffset;
+            var now = Time.timeSinceLevelLoad - timeOffset;
             if (chunk.timestamp - chunk.window - now < 0) {
                 if (OnPlayerChunk != null) {
                     OnPlayerChunk (timeOffset, sequence.Dequeue ());
@@ -46,7 +46,7 @@ public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
         }
         while (sequence.Count >= 1) {
             var chunk = sequence.Peek ();
-            var now = Time.time - timeOffset;
+            var now = Time.timeSinceLevelLoad - timeOffset;
             if (chunk.timestamp - chunk.window - now < 0) {
                 if (OnComputerChunk != null) {
                     OnComputerChunk (timeOffset, sequence.Dequeue ());

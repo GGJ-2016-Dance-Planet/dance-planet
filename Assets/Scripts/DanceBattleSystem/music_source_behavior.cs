@@ -4,14 +4,6 @@ using System.Collections.Generic;
 
 public class music_source_behavior : MonoBehaviour {
 
-	private static music_source_behavior music;
-	public static music_source_behavior getInstance() {
-		if (music == null) {
-			music = new music_source_behavior();
-		}
-		return music;
-	}
-
 	//The music controller
 	GameObject music_controller;
 
@@ -74,7 +66,7 @@ public class music_source_behavior : MonoBehaviour {
 		//Generate list of buttons to press 
 		//Flag to flip between adding to user/computer beat stream
 		bool add_to_computer = false;
-        float win = (30f/bpm);
+        float win = (25f/bpm);
         List<float> userTimestamps = new List<float> ();
         List<float> comptuerTimestamps = new List<float> ();
         for (int i = 0; i < num_beats; i++) {

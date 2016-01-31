@@ -21,11 +21,14 @@ public class Singleton<T> : MonoBehaviour where T : Component
 
                 if (instance == null) {
                     GameObject obj = new GameObject ();
-                    obj.hideFlags = HideFlags.HideAndDontSave;
                     instance = obj.AddComponent<T> ();
                 }
             }
             return instance;
         }
+    }
+
+    void OnDestroy() {
+        StopAllCoroutines ();
     }
 }
