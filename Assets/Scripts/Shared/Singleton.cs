@@ -6,10 +6,6 @@ public class Singleton<T> : MonoBehaviour where T : Component
     private static T instance;
     public static T Instance {
         get {
-            if (applicationIsQuitting) {
-                Debug.LogWarning("Application is quitting cannot access Singleton '"+ typeof(T) +"'.");
-                return null;
-            }
 
             if (instance == null) {
 
@@ -31,11 +27,5 @@ public class Singleton<T> : MonoBehaviour where T : Component
             }
             return instance;
         }
-    }
-
-    private static bool applicationIsQuitting = false;
-
-    public void OnApplicationQuit () {
-        applicationIsQuitting = true;
     }
 }

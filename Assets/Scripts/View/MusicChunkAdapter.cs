@@ -10,6 +10,8 @@ public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
     public event Action<float, button_to_press> OnComputerChunk;
     public AudioSource audioSource;
     private float timeOffset = -1f;
+    public event Action OnWin;
+    public int chunksCleared = 0;
 
 	void Awake () {
         music.userPressButton += ReroutePlayerChunks;
@@ -24,7 +26,7 @@ public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
             UIManager.Instance.DisplayCenterText (i.ToString (), chunkDelay / 8f, false);
         }
         yield return new WaitForSeconds (chunkDelay/4f);
-        while (sequence.Count > 1) {
+        while (sequence.Count >= 1) {
             var chunk = sequence.Peek ();
             var now = Time.time - timeOffset;
             if (chunk.timestamp - chunk.window - now < 0) {
@@ -34,13 +36,15 @@ public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
             }
             yield return null;
         }
+        yield return new WaitForSeconds (5f);
+        chunksCleared++;
     }
 
     IEnumerator ComputerChunkDaemon(Queue<button_to_press> sequence) {
         while (timeOffset == -1f) {
             yield return null;
         }
-        while (sequence.Count > 1) {
+        while (sequence.Count >= 1) {
             var chunk = sequence.Peek ();
             var now = Time.time - timeOffset;
             if (chunk.timestamp - chunk.window - now < 0) {
@@ -49,6 +53,15 @@ public class MusicChunkAdapter : Singleton<MusicChunkAdapter> {
                 }
             }
             yield return null;
+        }
+        yield return new WaitForSeconds (5f);
+        chunksCleared++;
+    }
+
+    void Update() {
+        if (chunksCleared == 2) {
+            OnWin ();
+            chunksCleared++;
         }
     }
 
